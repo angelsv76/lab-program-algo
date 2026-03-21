@@ -1,0 +1,8 @@
+{
+  "name": "Laboratorio de Programación INTI - Ver 2.6",
+  "description": "Plataforma educativa interactiva para el aprendizaje de algoritmos y pensamiento computacional.",
+  "author": "Angel Sanchez",
+  "institution": "Instituto Nacional Técnico Industrial (INTI)",
+  "version": "2.6.0",
+  "requestFramePermissions": []
+}
