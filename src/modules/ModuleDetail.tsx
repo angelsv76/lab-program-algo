@@ -68,7 +68,7 @@ export const ModuleDetail: React.FC = () => {
           ? 'La generación tardó demasiado. Verifica tu conexión e intenta de nuevo.'
           : isEmpty
           ? 'La IA no devolvió contenido. Intenta de nuevo en unos segundos.'
-          : 'No se pudo conectar con el tutor IA. Verifica tu API key y conexión.'
+          : `Error al generar contenido. Revisa que VITE_GEMINI_API_KEY esté configurada en tu archivo .env y que tengas conexión a internet. Detalle: ${error?.message || 'Error desconocido'}`
       );
     } finally {
       setIsGenerating(false);

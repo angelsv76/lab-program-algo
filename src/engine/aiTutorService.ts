@@ -10,15 +10,15 @@ import { GoogleGenAI, ThinkingLevel } from '@google/genai';
 const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
 
 const MODEL_CONFIG = {
-  model: 'gemini-2.0-flash',
+  model: 'gemini-flash-latest',
   config: {
-    thinkingConfig: { thinkingLevel: ThinkingLevel.NONE },
+    thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
     maxOutputTokens: 800,
     temperature: 0.7,
   },
 };
 
-function withTimeout<T>(promise: Promise<T>, ms = 15000): Promise<T> {
+function withTimeout<T>(promise: Promise<T>, ms = 20000): Promise<T> {
   return Promise.race([
     promise,
     new Promise<T>((_, reject) =>
@@ -33,7 +33,7 @@ async function withRetry<T>(fn: () => Promise<T>, retries = 2): Promise<T> {
       return await fn();
     } catch (err: any) {
       if (i === retries) throw err;
-      await new Promise(r => setTimeout(r, 1500));
+      await new Promise(r => setTimeout(r, 2000));
     }
   }
   throw new Error('Max retries reached');
@@ -47,10 +47,6 @@ export interface AIResponse {
 }
 
 export const aiTutorService = {
-  /**
-   * Genera una explicación con streaming.
-   * onChunk recibe cada fragmento de texto a medida que llega.
-   */
   generateExplanationStreaming: async (
     concept: string,
     level: string,
@@ -59,13 +55,12 @@ export const aiTutorService = {
   ): Promise<string> => {
     const prompt = `Eres un tutor de programación del INTI El Salvador para estudiantes de bachillerato (14-16 años).
 Explica "${concept}" para nivel "${level}", especialidad "${specialty}" (ITSI, Software, Automotriz o Industrial).
-Usa lenguaje sencillo. Sigue el modelo: Entrada → Proceso → Salida.
-Máximo 150 palabras.`;
+Usa lenguaje sencillo y motivador. Sigue el modelo: Entrada → Proceso → Salida. Máximo 150 palabras.`;
 
     return withRetry(async () => {
       const stream = await withTimeout(
         ai.models.generateContentStream({ ...MODEL_CONFIG, contents: prompt }),
-        15000
+        20000
       );
 
       let full = '';
@@ -78,7 +73,6 @@ Máximo 150 palabras.`;
     });
   },
 
-  // Versión sin streaming para compatibilidad
   generateExplanation: async (
     concept: string,
     level: string,
@@ -86,13 +80,12 @@ Máximo 150 palabras.`;
   ): Promise<string> => {
     const prompt = `Eres un tutor de programación del INTI El Salvador para estudiantes de bachillerato (14-16 años).
 Explica "${concept}" para nivel "${level}", especialidad "${specialty}".
-Usa lenguaje sencillo. Sigue el modelo: Entrada → Proceso → Salida.
-Máximo 150 palabras.`;
+Usa lenguaje sencillo. Sigue el modelo: Entrada → Proceso → Salida. Máximo 150 palabras.`;
 
     return withRetry(async () => {
       const response = await withTimeout(
         ai.models.generateContent({ ...MODEL_CONFIG, contents: prompt }),
-        15000
+        20000
       );
       return response.text || 'No pude generar una respuesta.';
     });
@@ -118,9 +111,9 @@ Responde SOLO con JSON válido:
           contents: prompt,
           config: { ...MODEL_CONFIG.config, responseMimeType: 'application/json' },
         }),
-        15000
+        20000
       );
-      const clean = (response.text || '{}').replace(/```json|```/g, '').trim();
+      const clean = (response.text || '{}').replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
       const result = JSON.parse(clean);
       return {
         text: result.text || 'Error al generar ejemplo.',
@@ -141,7 +134,7 @@ ${code}`;
     return withRetry(async () => {
       const response = await withTimeout(
         ai.models.generateContent({ ...MODEL_CONFIG, contents: prompt }),
-        15000
+        20000
       );
       return response.text || 'Error al analizar el algoritmo.';
     });
