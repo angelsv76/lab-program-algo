@@ -205,18 +205,26 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const getAIContent = async (tema: string, nivel: number, especialidad: string): Promise<AIContent> => {
     // Buscar en caché local
-    const cached = aiContents.find(c => c.tema === tema && c.nivel === nivel && c.especialidad === especialidad && c.estado === 'activo');
+    const cached = aiContents.find(
+      c => c.tema === tema && c.nivel === nivel && c.especialidad === especialidad && c.estado === 'activo'
+    );
     if (cached) return cached;
 
-    // Generar nuevo
-    const generated = await aiPedagogicalService.generateContent(tema, nivel, especialidad);
-    
-    // Normalizar campos para asegurar que sean strings (evitar errores de ReactMarkdown si la IA devuelve arrays)
+    // Normalizar cualquier valor al tipo string
     const normalizeString = (val: any): string => {
+      if (!val) return '';
       if (Array.isArray(val)) return val.join('\n\n');
-      if (typeof val === 'object' && val !== null) return JSON.stringify(val);
-      return String(val || '');
+      if (typeof val === 'object') return JSON.stringify(val);
+      return String(val);
     };
+
+    // Generar nuevo — cualquier error se propaga al caller
+    const generated = await aiPedagogicalService.generateContent(tema, nivel, especialidad);
+
+    // Validar que la respuesta tenga al menos el campo principal
+    if (!generated || !generated.explicacion) {
+      throw new Error('La IA devolvió una respuesta vacía o incompleta.');
+    }
 
     const newContent: AIContent = {
       id: Date.now().toString(),
@@ -225,14 +233,14 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       especialidad,
       estado: 'activo',
       fecha_generacion: new Date().toISOString(),
-      explicacion: normalizeString(generated.explicacion),
-      ejemplo: normalizeString(generated.ejemplo),
-      algoritmo: normalizeString(generated.algoritmo),
-      solucion: normalizeString(generated.solucion),
-      ejercicio: normalizeString(generated.ejercicio),
-      pista: normalizeString(generated.pista),
+      explicacion:     normalizeString(generated.explicacion),
+      ejemplo:         normalizeString(generated.ejemplo),
+      algoritmo:       normalizeString(generated.algoritmo),
+      solucion:        normalizeString(generated.solucion),
+      ejercicio:       normalizeString(generated.ejercicio),
+      pista:           normalizeString(generated.pista),
       errores_comunes: normalizeString(generated.errores_comunes),
-      dificultad: normalizeString(generated.dificultad)
+      dificultad:      normalizeString(generated.dificultad),
     };
 
     const updatedContents = [...aiContents, newContent];

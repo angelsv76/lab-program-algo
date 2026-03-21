@@ -14,7 +14,9 @@ import {
   ChevronRight,
   Lightbulb,
   Star,
-  Send
+  Send,
+  AlertCircle,
+  RefreshCw
 } from 'lucide-react';
 import { aiTutorService } from '../engine/aiTutorService';
 import ReactMarkdown from 'react-markdown';
@@ -28,6 +30,7 @@ export const ModuleDetail: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'teoria' | 'ejemplos' | 'practica'>('teoria');
   const [aiContent, setAiContent] = useState<AIContent | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [aiError, setAiError] = useState<string | null>(null);
   const [feedbackRating, setFeedbackRating] = useState(0);
   const [feedbackComment, setFeedbackComment] = useState('');
   const [feedbackSent, setFeedbackSent] = useState(false);
@@ -47,16 +50,26 @@ export const ModuleDetail: React.FC = () => {
 
   const handleGenerateAIContent = async () => {
     setIsGenerating(true);
+    setAiError(null);
     setFeedbackSent(false);
     try {
       const content = await getAIContent(
         module.title,
-        1, // Nivel inicial
+        1,
         student?.codigo_grupo || 'General'
       );
       setAiContent(content);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error('AI content error:', error);
+      const isTimeout = error?.message?.includes('TIMEOUT');
+      const isEmpty   = error?.message?.includes('vacía');
+      setAiError(
+        isTimeout
+          ? 'La generación tardó demasiado. Verifica tu conexión e intenta de nuevo.'
+          : isEmpty
+          ? 'La IA no devolvió contenido. Intenta de nuevo en unos segundos.'
+          : 'No se pudo conectar con el tutor IA. Verifica tu API key y conexión.'
+      );
     } finally {
       setIsGenerating(false);
     }
@@ -181,7 +194,44 @@ export const ModuleDetail: React.FC = () => {
                     </button>
                   </div>
 
-                  {aiContent ? (
+                  {/* Estado: generando — skeleton animado */}
+                  {isGenerating && (
+                    <div className="space-y-3 animate-pulse">
+                      <div className="h-4 bg-blue-100 rounded-full w-3/4" />
+                      <div className="h-4 bg-blue-100 rounded-full w-full" />
+                      <div className="h-4 bg-blue-100 rounded-full w-5/6" />
+                      <div className="h-4 bg-blue-100 rounded-full w-2/3" />
+                      <div className="mt-2 h-3 bg-blue-50 rounded-full w-1/2" />
+                      <p className="text-center text-xs text-blue-400 font-bold pt-2">
+                        El tutor está preparando tu contenido...
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Estado: error con botón de reintento */}
+                  {!isGenerating && aiError && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-5 bg-red-50 border border-red-200 rounded-2xl flex gap-3 items-start"
+                    >
+                      <AlertCircle className="text-red-500 flex-shrink-0 mt-0.5" size={20} />
+                      <div className="flex-1">
+                        <p className="text-sm font-black text-red-700 mb-1">No se pudo generar el contenido</p>
+                        <p className="text-xs text-red-600 mb-3">{aiError}</p>
+                        <button
+                          onClick={handleGenerateAIContent}
+                          className="flex items-center gap-2 text-xs font-black text-red-700 hover:text-red-900 transition-colors"
+                        >
+                          <RefreshCw size={14} />
+                          Intentar de nuevo
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Estado: contenido listo */}
+                  {!isGenerating && !aiError && aiContent && (
                     <motion.div 
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -201,7 +251,7 @@ export const ModuleDetail: React.FC = () => {
                         </div>
                         <div className="p-4 bg-green-50 rounded-2xl border border-green-100">
                           <h5 className="text-green-700 font-black text-xs uppercase tracking-widest mb-2">Nivel Recomendado</h5>
-                          <p className="text-sm text-green-800">Este contenido está optimizado para tu nivel actual ({aiContent.nivel}/5).</p>
+                          <p className="text-sm text-green-800">Contenido optimizado para tu nivel actual ({aiContent.nivel}/5).</p>
                         </div>
                       </div>
 
@@ -269,7 +319,10 @@ export const ModuleDetail: React.FC = () => {
                         </motion.div>
                       )}
                     </motion.div>
-                  ) : (
+                  )}
+
+                  {/* Estado: vacío (inicial) */}
+                  {!isGenerating && !aiError && !aiContent && (
                     <div className="text-center py-10 border-2 border-dashed border-blue-100 rounded-2xl">
                       <MessageSquare className="mx-auto text-blue-200 mb-2" size={40} />
                       <p className="text-gray-400 text-sm italic">
