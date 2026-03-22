@@ -9,14 +9,12 @@ import {
   Code2, 
   Sparkles,
   ChevronRight,
-  Download,
   ArrowLeft
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SimulationEngine } from '../engine/SimulationEngine';
 import { SimulationState, ConsoleLine } from '../types/simulation';
 import { aiTutorService } from '../engine/aiTutorService';
-import { PythonExporter } from '../engine/PythonExporter';
 import { EPSModel } from '../components/simulation/EPSModel';
 
 const DEFAULT_CODE = `1 Inicio
@@ -94,19 +92,6 @@ const AlgorithmLab: React.FC = () => {
     if (inputValue.trim() === '') return;
     setSimState(prev => SimulationEngine.provideInput(prev, inputValue));
     setInputValue('');
-  };
-
-  const handleExportPython = () => {
-    const pythonCode = PythonExporter.toPython(simState.instructions);
-    const blob = new Blob([pythonCode], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'algoritmo_inti.py';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
   };
 
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -408,7 +393,7 @@ const AlgorithmLab: React.FC = () => {
       <footer className="h-12 border-t border-gray-200 bg-white flex items-center px-6 justify-between shrink-0">
         <div className="flex items-center gap-2 text-xs text-gray-500">
           <Sparkles size={14} className="text-tech-orange" />
-          ¿Necesitas ayuda con tu algoritmo?
+          ¿Tu algoritmo no hace lo que esperabas?
           <button 
             onClick={handleAskAI}
             disabled={isAnalyzing}
@@ -418,13 +403,9 @@ const AlgorithmLab: React.FC = () => {
           </button>
         </div>
         <div className="flex items-center gap-4">
-          <button 
-            onClick={handleExportPython}
-            className="text-[10px] font-bold text-gray-400 hover:text-oxford flex items-center gap-1 transition-colors"
-          >
-            <Download size={12} />
-            EXPORTAR A PYTHON
-          </button>
+          <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            Todo algoritmo bien escrito es la base de un futuro programa
+          </span>
         </div>
       </footer>
     </div>
