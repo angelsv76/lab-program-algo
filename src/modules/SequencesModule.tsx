@@ -37,7 +37,7 @@ export const SequencesModule: React.FC = () => {
         </div>
         <div>
           <h1 className="text-3xl font-black">Secuencias de Instrucciones</h1>
-          <p className="text-gray-500">El orden de los pasos es vital para el éxito de un algoritmo.</p>
+          <p className="text-gray-500">Un paso fuera de lugar y todo falla. El orden no es opcional.</p>
         </div>
       </header>
 
@@ -49,7 +49,7 @@ export const SequencesModule: React.FC = () => {
           <h3 className="font-bold">Reto: Preparar un Sándwich</h3>
         </div>
         <p className="text-sm text-gray-500 mb-6">
-          Arrastra los pasos para ordenarlos correctamente de arriba hacia abajo.
+          Los pasos están desordenados. Arrastrá cada uno hasta ponerlos en el orden correcto, de arriba hacia abajo.
         </p>
 
         <Reorder.Group axis="y" values={steps} onReorder={setSteps} className="space-y-3">
@@ -81,8 +81,8 @@ export const SequencesModule: React.FC = () => {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-6 bg-green-100 border border-green-200 rounded-2xl flex items-center gap-4 text-green-700">
           <CheckCircle2 size={32} />
           <div>
-            <p className="font-bold text-lg">¡Secuencia Correcta!</p>
-            <p className="text-sm">Has entendido que el orden de las instrucciones altera el resultado final.</p>
+            <p className="font-bold text-lg">¡Eso es!</p>
+            <p className="text-sm">El orden importa. En programación, una instrucción fuera de lugar puede romper todo el programa.</p>
           </div>
         </motion.div>
       )}
@@ -91,8 +91,8 @@ export const SequencesModule: React.FC = () => {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-6 bg-red-100 border border-red-200 rounded-2xl flex items-center gap-4 text-red-700">
           <AlertCircle size={32} />
           <div>
-            <p className="font-bold text-lg">Secuencia Ilógica</p>
-            <p className="text-sm">No puedes comer el sándwich antes de cerrarlo. Revisa el orden.</p>
+            <p className="font-bold text-lg">Algo no cuadra</p>
+            <p className="text-sm">No podés comerte el sándwich antes de cerrarlo. Revisá el orden.</p>
           </div>
         </motion.div>
       )}

@@ -71,8 +71,8 @@ export const OperatorsModule: React.FC<{ type: OperatorType }> = ({ type }) => {
         <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
           <CheckCircle2 size={40} />
         </div>
-        <h2 className="text-3xl font-black">¡Módulo Completado!</h2>
-        <p className="text-gray-500">Has dominado los conceptos básicos de este nivel.</p>
+        <h2 className="text-3xl font-black">¡Listo!</h2>
+        <p className="text-gray-500">Completaste este módulo. Ya tenés estas herramientas claras para usarlas en tus algoritmos.</p>
       </motion.div>
     );
   }
@@ -85,7 +85,7 @@ export const OperatorsModule: React.FC<{ type: OperatorType }> = ({ type }) => {
         </div>
         <div>
           <h1 className="text-3xl font-black">{info.title}</h1>
-          <p className="text-gray-500">Pon a prueba tus conocimientos sobre operadores.</p>
+          <p className="text-gray-500">Probá lo que ya sabés. Sin trampa.</p>
         </div>
       </header>
 
@@ -133,7 +133,7 @@ export const OperatorsModule: React.FC<{ type: OperatorType }> = ({ type }) => {
         {isCorrect === false && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="p-4 bg-red-100 border border-red-200 rounded-xl flex items-center gap-3 text-red-700">
             <AlertCircle size={20} />
-            <span className="font-bold">Respuesta incorrecta. Inténtalo de nuevo.</span>
+            <span className="font-bold">No es esa. Intentá de nuevo.</span>
           </motion.div>
         )}
       </AnimatePresence>

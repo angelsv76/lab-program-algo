@@ -67,12 +67,12 @@ export const Home: React.FC = () => {
             Plataforma Educativa INTI
           </div>
           <h1 className="text-5xl lg:text-7xl font-black text-oxford leading-tight">
-            Domina el <br />
-            <span className="text-tech-blue">Pensamiento</span> <br />
-            Computacional
+            Aprendé a <br />
+            <span className="text-tech-blue">pensar</span> <br />
+            como programador
           </h1>
           <p className="text-gray-500 text-lg max-w-xl">
-            Aprende algoritmos y programación con el apoyo de Inteligencia Artificial personalizada para tu especialidad técnica.
+            Algoritmos, pseudocódigo y lógica de programación — con ejercicios diseñados para tu especialidad en el INTI.
           </p>
         </motion.div>
 
@@ -106,8 +106,8 @@ export const Home: React.FC = () => {
       >
         <div className="card p-8 shadow-2xl border-oxford/5">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-black text-oxford">Acceso Estudiantes</h2>
-            <p className="text-gray-400 text-sm">Ingresa tus datos para empezar</p>
+            <h2 className="text-2xl font-black text-oxford">¿Sos estudiante del INTI?</h2>
+            <p className="text-gray-400 text-sm">Ingresá tus datos para entrar</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">

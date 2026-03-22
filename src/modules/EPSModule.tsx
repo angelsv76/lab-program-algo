@@ -31,7 +31,7 @@ export const EPSModule: React.FC = () => {
         </div>
         <div>
           <h1 className="text-3xl font-black">Entrada – Proceso – Salida</h1>
-          <p className="text-gray-500">El modelo fundamental de la computación.</p>
+          <p className="text-gray-500">Todo programa funciona así. Sin excepción.</p>
         </div>
       </header>
 
@@ -45,20 +45,20 @@ export const EPSModule: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="card border-blue-100 bg-blue-50/30">
               <h4 className="font-black text-blue-600 mb-2 uppercase tracking-widest text-xs">1. Entrada</h4>
-              <p className="text-sm text-gray-600">Son los datos o información que el sistema recibe para trabajar.</p>
+              <p className="text-sm text-gray-600">Los datos que el programa recibe para trabajar. Puede ser lo que el usuario escribe, o datos que vienen de otro lado.</p>
             </div>
             <div className="card border-tech-orange/10 bg-orange-50/30">
               <h4 className="font-black text-tech-orange mb-2 uppercase tracking-widest text-xs">2. Proceso</h4>
-              <p className="text-sm text-gray-600">Es la acción o transformación que se realiza sobre los datos de entrada.</p>
+              <p className="text-sm text-gray-600">Lo que el programa hace con esos datos. Un cálculo, una comparación, una transformación. Aquí está la lógica.</p>
             </div>
             <div className="card border-green-100 bg-green-50/30">
               <h4 className="font-black text-green-600 mb-2 uppercase tracking-widest text-xs">3. Salida</h4>
-              <p className="text-sm text-gray-600">Es el resultado final que el sistema entrega después del proceso.</p>
+              <p className="text-sm text-gray-600">El resultado que el programa entrega. Puede ser un número, un mensaje, o una acción — lo que el usuario finalmente ve.</p>
             </div>
           </div>
 
           <div className="card">
-            <h3 className="font-bold mb-4">Ejemplo de la vida real: Una Licuadora</h3>
+            <h3 className="font-bold mb-4">Ejemplo del día a día: Una licuadora</h3>
             <div className="flex flex-col md:flex-row items-center justify-between gap-8 py-8">
               <div className="text-center">
                 <div className="bg-gray-100 p-4 rounded-2xl mb-2">🍎 🍌 🥛</div>
@@ -161,8 +161,8 @@ export const EPSModule: React.FC = () => {
             >
               <CheckCircle2 size={32} />
               <div>
-                <p className="font-bold text-lg">¡Excelente trabajo!</p>
-                <p className="text-sm">Has completado el ejercicio de Entrada-Proceso-Salida correctamente.</p>
+                <p className="font-bold text-lg">¡Bien hecho!</p>
+                <p className="text-sm">Ya viste el modelo EPS en acción. Ahora lo vas a reconocer en cualquier programa que escribás.</p>
               </div>
             </motion.div>
           )}

@@ -37,7 +37,7 @@ export const ThinkingModule: React.FC = () => {
         </div>
         <div>
           <h1 className="text-3xl font-black">Pensar como Computadora</h1>
-          <p className="text-gray-500">Descompón problemas en pasos lógicos y secuenciales.</p>
+          <p className="text-gray-500">Si el orden está mal, el programa falla. Así de simple.</p>
         </div>
       </header>
 
@@ -49,7 +49,7 @@ export const ThinkingModule: React.FC = () => {
           <h3 className="font-bold">Reto: El Algoritmo del Café</h3>
         </div>
         <p className="text-sm text-gray-500 mb-6">
-          Una computadora necesita instrucciones precisas. Arrastra los pasos para ordenarlos correctamente de arriba hacia abajo.
+          Cada paso tiene su lugar. Arrastrá los pasos hasta dejarlos en el orden correcto, de arriba hacia abajo.
         </p>
 
         <Reorder.Group axis="y" values={steps} onReorder={setSteps} className="space-y-3">
@@ -81,8 +81,8 @@ export const ThinkingModule: React.FC = () => {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-6 bg-green-100 border border-green-200 rounded-2xl flex items-center gap-4 text-green-700">
           <CheckCircle2 size={32} />
           <div>
-            <p className="font-bold text-lg">¡Lógica Perfecta!</p>
-            <p className="text-sm">Has ordenado los pasos de forma secuencial. Así es como piensa una computadora.</p>
+            <p className="font-bold text-lg">¡Correcto!</p>
+            <p className="text-sm">Eso es exactamente cómo piensa un algoritmo: paso a paso, sin saltarse nada.</p>
           </div>
         </motion.div>
       )}
@@ -91,8 +91,8 @@ export const ThinkingModule: React.FC = () => {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-6 bg-red-100 border border-red-200 rounded-2xl flex items-center gap-4 text-red-700">
           <AlertCircle size={32} />
           <div>
-            <p className="font-bold text-lg">Orden Incorrecto</p>
-            <p className="text-sm">Revisa la secuencia. Algunos pasos no pueden ocurrir antes que otros.</p>
+            <p className="font-bold text-lg">No está bien todavía</p>
+            <p className="text-sm">Revisá la secuencia. Hay pasos que no pueden ocurrir antes que otros.</p>
           </div>
         </motion.div>
       )}

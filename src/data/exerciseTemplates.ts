@@ -28,9 +28,9 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       gb2: { min: 4, max: 64 }
     },
     hints: [
-      'Debes sumar ambas capacidades.',
-      'La operación es gb1 + gb2.',
-      'Suma los dos valores numéricos.'
+      'Tenés dos USBs. ¿Cuánto espacio hay en total?',
+      'Sumá las dos capacidades: gb1 + gb2.',
+      'Es una suma simple. gb1 + gb2.'
     ],
     type: 'math'
   },
@@ -46,8 +46,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       seg: { min: 10, max: 60 }
     },
     hints: [
-      'Primero calcula el total de bits (Mbps * segundos).',
-      'Luego divide entre 8 para obtener Bytes.'
+      'Primero calculá cuántos bits se descargan en total (Mbps × segundos).',
+      'Después convertí a bytes dividiendo entre 8. Recordá: 8 bits = 1 byte.'
     ],
     type: 'math'
   },
@@ -64,8 +64,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       total: { min: 20, max: 100 }
     },
     hints: [
-      'Es una división.',
-      'Divide el total entre el consumo por hora.',
+      'Si el motor gasta X litros por hora, ¿cuántas horas aguanta con el tanque lleno?',
+      'Dividí el total de litros entre el consumo por hora.',
       'Operación: total / litros.'
     ],
     type: 'math'
@@ -82,8 +82,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       rpm: { min: 2000, max: 6000 }
     },
     hints: [
-      'Multiplica el torque por las RPM.',
-      'Divide el resultado entre la constante 5252.'
+      'Multiplicá el torque por las RPM.',
+      'Ese resultado dividilo entre 5252. Ese número es una constante fija de la fórmula.'
     ],
     type: 'math'
   },
@@ -99,8 +99,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       n: { min: 10, max: 50 }
     },
     hints: [
-      'Eleva el valor de n al cuadrado.',
-      'Operación: n * n o n ^ 2.'
+      'O(n²) significa que el número de operaciones crece al cuadrado del tamaño del problema.',
+      'Elevá n al cuadrado: n × n.'
     ],
     type: 'math'
   },
@@ -118,8 +118,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       descanso: { min: 5, max: 15 }
     },
     hints: [
-      'Calcula la producción total teórica.',
-      'Resta el porcentaje de tiempo perdido.'
+      'Calculá primero cuántas unidades produciría sin interrupciones (unidades × horas).',
+      'Después restale el porcentaje de tiempo perdido en mantenimiento.'
     ],
     type: 'math'
   },
@@ -135,9 +135,9 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       radio: { min: 1, max: 20 }
     },
     hints: [
-      'La entrada es el radio.',
-      'El proceso es PI * radio * radio.',
-      'La salida es el área.'
+      'La entrada es el radio del círculo.',
+      'El proceso aplica la fórmula: π × radio × radio.',
+      'La salida es el área calculada.'
     ],
     type: 'eps'
   },
@@ -154,8 +154,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       b: { min: 1, max: 100 }
     },
     hints: [
-      'Compara si el primer número es mayor que el segundo.',
-      'El resultado debe ser Verdadero o Falso.'
+      '¿El primer número es mayor que el segundo?',
+      'El resultado solo puede ser Verdadero o Falso.'
     ],
     type: 'logic'
   },
@@ -171,8 +171,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       b: { min: 1, max: 50 }
     },
     hints: [
-      'Compara si el primer número es menor o igual al segundo.',
-      'El resultado debe ser Verdadero o Falso.'
+      '¿El primer número es menor O igual al segundo? Cualquiera de las dos basta.',
+      'El resultado solo puede ser Verdadero o Falso.'
     ],
     type: 'logic'
   },
@@ -189,8 +189,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       b: { min: 15, max: 25 }
     },
     hints: [
-      'Evalúa primero cada comparación.',
-      'El operador Y requiere que ambas condiciones sean verdaderas.'
+      'Evaluá cada comparación por separado: ¿A > 10? ¿B < 20?',
+      'Con Y (AND), las DOS condiciones tienen que ser verdaderas para que el resultado sea Verdadero.'
     ],
     type: 'logic'
   },
@@ -205,8 +205,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       a: { min: 8, max: 12 }
     },
     hints: [
-      'Evalúa la comparación dentro del paréntesis.',
-      'El operador NO invierte el resultado lógico.'
+      'Primero resolvé lo que está dentro: ¿A == 10?',
+      'Después aplicá el NO. Invierte el resultado — si era Verdadero, pasa a Falso, y viceversa.'
     ],
     type: 'logic'
   },
@@ -224,8 +224,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       c: { min: 2, max: 10 }
     },
     hints: [
-      'Recuerda la jerarquía de operadores.',
-      'La multiplicación se realiza antes que la suma.'
+      'No resolvás de izquierda a derecha todavía. ¿Qué operación tiene prioridad?',
+      'La multiplicación va primero que la suma. Resolvé {b} * {c} antes de sumar {a}.'
     ],
     type: 'math'
   },
@@ -242,8 +242,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       c: { min: 2, max: 10 }
     },
     hints: [
-      'Los paréntesis tienen la mayor prioridad.',
-      'Luego realiza la multiplicación y división de izquierda a derecha.'
+      'Lo que está entre paréntesis va primero, siempre.',
+      'Después multiplicación y división, de izquierda a derecha.'
     ],
     type: 'math'
   },
@@ -261,8 +261,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       d: { min: 1, max: 5 }
     },
     hints: [
-      'Multiplicación y división tienen la misma prioridad, se resuelven de izquierda a derecha.',
-      'Suma y resta se resuelven al final, también de izquierda a derecha.'
+      'Multiplicación y división tienen el mismo nivel — resolvelas de izquierda a derecha.',
+      'Suma y resta van al final, también de izquierda a derecha.'
     ],
     type: 'math'
   },
@@ -280,9 +280,9 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       d: { min: 2, max: 10 }
     },
     hints: [
-      '1. Paréntesis y Potencias primero.',
-      '2. Multiplicación y División después.',
-      '3. Sumas y Restas al final.'
+      'Paso 1: Paréntesis y potencias.',
+      'Paso 2: Multiplicación y división.',
+      'Paso 3: Suma y resta. Seguí ese orden y no te perdés.'
     ],
     type: 'math'
   },
@@ -297,8 +297,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       x: { min: 5, max: 15 }
     },
     hints: [
-      'Evalúa la condición X > 10.',
-      'Sigue el camino del Entonces si es verdadero, o del Sino si es falso.'
+      '¿X es mayor que 10? Según eso, el algoritmo toma uno de dos caminos.',
+      'Si la condición es verdadera, ejecuta el Entonces. Si es falsa, el Sino.'
     ],
     type: 'algorithm'
   },
@@ -312,8 +312,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       edad: { min: 15, max: 21 }
     },
     hints: [
-      'Compara la edad con 18.',
-      'Si es 18 o más, es Mayor.'
+      '¿La edad es 18 o más?',
+      'Si sí, imprime "Mayor". Si no, imprime "Menor".'
     ],
     type: 'algorithm'
   },
@@ -327,8 +327,8 @@ export const exerciseTemplates: ExerciseTemplate[] = [
       n: { min: 3, max: 7 }
     },
     hints: [
-      'Observa el valor inicial de I.',
-      'Cuenta cuántas veces I cumple la condición antes de incrementarse.'
+      'I empieza en 1. Contá cuántas veces I cumple la condición I <= {n} antes de que deje de cumplirla.',
+      'Cada vez que el ciclo se ejecuta, I aumenta en 1. ¿Cuándo para?'
     ],
     type: 'algorithm'
   }

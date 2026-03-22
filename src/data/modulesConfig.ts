@@ -4,7 +4,7 @@ export const INITIAL_MODULES: ModuleDefinition[] = [
   {
     id: 'eps',
     title: 'Entrada – Proceso – Salida',
-    description: 'Aprende el modelo fundamental de cómo las computadoras procesan información.',
+    description: 'Toda computadora hace lo mismo: recibe datos, los transforma y entrega un resultado. Acá aprendés cómo.',
     route: '/modulos/eps',
     isActive: true,
     permanent: true,
@@ -15,7 +15,7 @@ export const INITIAL_MODULES: ModuleDefinition[] = [
   {
     id: 'thinking',
     title: 'Pensar como computadora',
-    description: 'Entrena tu mente para descomponer problemas en pasos lógicos y precisos.',
+    description: 'Las computadoras no adivinan. Necesitan instrucciones exactas, en orden. Aquí practicás eso.',
     route: '/modulos/thinking',
     isActive: true,
     permanent: true,
@@ -26,7 +26,7 @@ export const INITIAL_MODULES: ModuleDefinition[] = [
   {
     id: 'sequences',
     title: 'Secuencias de instrucciones',
-    description: 'Domina el orden lógico necesario para que un programa funcione correctamente.',
+    description: 'Un paso fuera de lugar y el programa falla. Practicá el orden correcto de las instrucciones.',
     route: '/modulos/sequences',
     isActive: true,
     permanent: true,
@@ -37,7 +37,7 @@ export const INITIAL_MODULES: ModuleDefinition[] = [
   {
     id: 'math-ops',
     title: 'Operadores matemáticos',
-    description: 'Suma, resta, multiplica y divide datos dentro de tus algoritmos.',
+    description: 'Suma, resta, multiplica, dividí. Los algoritmos hacen cálculos todo el tiempo — acá aprendés cómo.',
     route: '/modulos/math-ops',
     isActive: true,
     permanent: true,
@@ -48,7 +48,7 @@ export const INITIAL_MODULES: ModuleDefinition[] = [
   {
     id: 'relational-ops',
     title: 'Operadores relacionales',
-    description: 'Compara valores para tomar decisiones lógicas (mayor que, menor que, igual).',
+    description: '¿Es mayor? ¿Es igual? ¿Cuál es más pequeño? Con estos operadores tu algoritmo toma decisiones.',
     route: '/modulos/relational-ops',
     isActive: true,
     permanent: true,
@@ -59,7 +59,7 @@ export const INITIAL_MODULES: ModuleDefinition[] = [
   {
     id: 'logical-ops',
     title: 'Operadores lógicos',
-    description: 'Combina condiciones usando AND, OR y NOT para lógica compleja.',
+    description: 'A veces una condición no es suficiente. AND, OR y NOT te permiten combinarlas para decisiones más complejas.',
     route: '/modulos/logical-ops',
     isActive: true,
     permanent: true,

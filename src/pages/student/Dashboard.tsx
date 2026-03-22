@@ -40,8 +40,8 @@ export const StudentDashboard: React.FC = () => {
           <div className="flex items-center gap-3">
             <Sparkles className="text-tech-blue" />
             <div>
-              <p className="text-sm font-black text-oxford">Modo de Evaluación Docente</p>
-              <p className="text-xs text-gray-500">Estás visualizando la plataforma como un estudiante para revisión de contenido.</p>
+              <p className="text-sm font-black text-oxford">Vista de docente</p>
+              <p className="text-xs text-gray-500">Estás viendo la plataforma como la ven tus estudiantes.</p>
             </div>
           </div>
           <Link to="/admin" className="btn-secondary py-2 px-4 text-xs">Volver al Panel</Link>
@@ -63,7 +63,7 @@ export const StudentDashboard: React.FC = () => {
                 ¡Hola, <span className="text-tech-orange">{displayStudent.nombre_completo.split(' ')[0]}</span>!
               </h1>
               <p className="text-oxford-light max-w-md">
-                Hoy es un gran día para fortalecer tu pensamiento computacional. ¿Qué vamos a programar hoy?
+                Hoy es buen día para practicar. ¿Desde dónde arrancamos?
               </p>
             </motion.div>
             
@@ -88,7 +88,7 @@ export const StudentDashboard: React.FC = () => {
             <div className="text-6xl">🐊</div>
             <div className="absolute -top-4 -right-4 bg-white text-oxford p-3 rounded-2xl shadow-xl border border-gray-100 max-w-[150px]">
               <p className="text-[10px] font-black leading-tight">
-                "¡Recuerda que los algoritmos son como recetas de cocina!"
+                "Un algoritmo es solo una receta. Si seguís los pasos, funciona."
               </p>
             </div>
           </motion.div>
@@ -107,7 +107,7 @@ export const StudentDashboard: React.FC = () => {
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-black text-oxford flex items-center gap-2">
                 <BookOpen className="text-tech-blue" />
-                Tus Módulos de Aprendizaje
+                Módulos disponibles
               </h2>
               <Link to="/modulos" className="text-tech-blue font-bold text-sm hover:underline">
                 Ver todos
